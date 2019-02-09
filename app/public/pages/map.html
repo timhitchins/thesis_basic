@@ -1,0 +1,161 @@
+<!-- Please contact Tim Hitchins at 
+      hitchins (at) pdx.edu for information 
+      regarding this map app.-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Connections with Forests & Grasslands of Central Oregon Survey
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--The viewport meta tag is used to improve the presentation and behavior of the samples 
+      on iOS devices-->
+    <meta
+      name="viewport"
+      content="initial-scale=1, maximum-scale=1,user-scalable=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/3.17/dijit/themes/claro/claro.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/3.17/esri/css/esri.css"
+    />
+    <link rel="stylesheet" href="./../css/main.css" />
+    <link
+      rel="shortcut icon"
+      href="http://discoveryourforest.org/wp-content/uploads/2015/11/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Typekit fonts -->
+    <script
+      type="text/javascript"
+      src="https://use.typekit.net/kfw3apq.js"
+    ></script>
+    <script type="text/javascript">
+      try {
+        Typekit.load({ async: true });
+      } catch (e) {
+        console.log('Font loading eror:', e);
+      }
+    </script>
+
+    <script
+      type="text/javascript"
+      src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+    ></script>
+
+    <script>
+      $(window).load(function() {
+        $('.begin-loader').fadeOut('slow');
+      });
+    </script>
+
+    <script type="text/javascript">
+      var ain = Math.floor(Math.random() * 10000) + 1;
+    </script>
+
+    <script src="https://js.arcgis.com/3.17/"></script>
+    <script type="text/javascript" src="./../js/map.js"></script>
+    <script type="text/javascript">
+      window.onbeforeunload = function() {
+        return 'Progress will be lost.';
+      };
+    </script>
+  </head>
+
+  <body class="claro">
+    <div class="begin-loader">
+      <img src="./../images/globe.gif" id="loading_gif" />
+    </div>
+
+    <div
+      id="mainWindow"
+      data-dojo-type="dijit.layout.BorderContainer"
+      data-dojo-props="design:'headline'"
+      style="width:100%; height:100%;"
+    >
+      <div
+        id="header"
+        data-dojo-type="dijit.layout.ContentPane"
+        data-dojo-props="region:'top'"
+      >
+        <div id="logo">
+          <img src="./../images/transparent-logo-crop.png" />
+        </div>
+        <div id="snippet">
+          Connections with Forests & Grasslands of Central Oregon: Human Ecology
+          Mapping
+        </div>
+      </div>
+      <div
+        data-dojo-type="dijit.layout.ContentPane"
+        id="leftPane"
+        data-dojo-props="region:'left'"
+      >
+        <div>
+          <div id="select">Instructions</div>
+          <div id="instruction_head">
+            Please identify up to 5 places in the Deschutes National Forest,
+            Ochoco National Forest, or Crooked River National Grassland that are
+            important to you.
+          </div>
+        </div>
+
+        <div id="line"></div>
+        <div id="ain"></div>
+        <ol class="list">
+          <li>
+            <button id="d_button" onclick="myDialog.show();">
+              Click here for your anonymous identification number (AIN).
+            </button>
+          </li>
+
+          <li>Pan and zoom to find desired location on the map.</li>
+
+          <li>
+            Click on a colored dot in the panel below, then add dot to map.
+            <em><strong> Start with Location 1. </strong></em>
+          </li>
+        </ol>
+        <div id="step">
+          Answer the pop-up survey questions. If you cannot see the entire
+          pop-up box, click and drag the map. Close pop-up box only when done.
+        </div>
+
+        <div id="templateDiv"></div>
+
+        <ol start="4" class="list2">
+          <li>Repeat above steps for up to 5 total locations.</li>
+
+          <li>
+            <button id="d_button2" onclick="myDialog2.show();">
+              Click here when you have completed the mapping activity.
+            </button>
+          </li>
+        </ol>
+      </div>
+      <div
+        id="map"
+        data-dojo-type="dijit.layout.ContentPane"
+        data-dojo-props="region:'center'"
+      >
+        <div id="HomeButton"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./../js/dialog.js"></script>
+    <script type="text/javascript">
+      function unhookBeforeUnload() {
+        window.onbeforeunload = null;
+      }
+      var anchor = document.getElementById('d_button2');
+      anchor.addEventListener('click', unhookBeforeUnload);
+      anchor.attachEvent('onclick', unhookBeforeUnload);
+      anchor.onclick = unhookBeforeUnload;
+    </script>
+  </body>
+</html>
